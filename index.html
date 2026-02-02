@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mazzochi Twin's Lawn Care Service, LLC | Premium Lawn Care</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #1a3a1a;
+            --primary: #2d5a2d;
+            --primary-light: #4a8c4a;
+            --accent: #7bc043;
+            --accent-light: #a4d96c;
+            --cream: #f8f6f0;
+            --white: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-muted: #6b6b6b;
+            --gradient-primary: linear-gradient(135deg, #2d5a2d 0%, #4a8c4a 100%);
+            --gradient-accent: linear-gradient(135deg, #7bc043 0%, #a4d96c 100%);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
+            --shadow-glow: 0 0 40px rgba(123, 192, 67, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: transparent;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-sm);
+            padding: 0.75rem 5%;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .navbar-logo img {
+            height: 90px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar.scrolled .navbar-logo img {
+            height: 70px;
+        }
+
+        .navbar-logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .navbar.scrolled .nav-links a {
+            color: var(--text-dark);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--gradient-accent);
+            color: var(--white) !important;
+            padding: 0.75rem 1.75rem !important;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .mobile-menu-btn span {
+            width: 28px;
+            height: 2px;
+            background: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled .mobile-menu-btn span {
+            background: var(--text-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--white);
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1558904541-efa843a96f01?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
+            opacity: 0.4;
+        }
+
+        .hero-overlay {
+            display: none;
+        }
+
+        .hero-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(45, 90, 45, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            border: 1px solid rgba(45, 90, 45, 0.2);
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .hero-badge span {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+        }
+
+        .hero h1 .highlight {
+            color: var(--primary);
+            position: relative;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-accent);
+            color: var(--white);
+            box-shadow: var(--shadow-md), var(--shadow-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg), 0 0 60px rgba(123, 192, 67, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(45, 90, 45, 0.1);
+            color: var(--primary);
+            border: 2px solid var(--primary-light);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(45, 90, 45, 0.15);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 1s forwards;
+        }
+
+        .scroll-indicator {
+            width: 30px;
+            height: 50px;
+            border: 2px solid rgba(45, 90, 45, 0.3);
+            border-radius: 25px;
+            display: flex;
+            justify-content: center;
+            padding-top: 10px;
+        }
+
+        .scroll-indicator::before {
+            content: '';
+            width: 4px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 2px;
+            animation: scroll 2s infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(15px); opacity: 0.5; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30px;
+            height: 1px;
+            background: var(--primary-light);
+        }
+
+        .section-label::before {
+            right: calc(100% + 15px);
+        }
+
+        .section-label::after {
+            left: calc(100% + 15px);
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Services Section */
+        .services {
+            background: var(--cream);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-accent);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .service-icon svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--white);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 1.5rem;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-link {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .service-link svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .service-link:hover svg {
+            transform: translateX(5px);
+        }
+
+        /* About/Stats Section */
+        .about {
+            background: var(--gradient-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        .about-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            color: var(--white);
+        }
+
+        .about-text .section-label {
+            color: var(--accent-light);
+        }
+
+        .about-text .section-label::before,
+        .about-text .section-label::after {
+            background: var(--accent-light);
+        }
+
+        .about-text h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .about-features {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-icon svg {
+            width: 14px;
+            height: 14px;
+            fill: var(--white);
+        }
+
+        .feature-item span {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--white);
+        }
+
+        .testimonial-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .testimonial-card {
+            background: var(--cream);
+            border-radius: 24px;
+            padding: 3rem;
+            position: relative;
+        }
+
+        .quote-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+        }
+
+        .quote-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--white);
+        }
+
+        .testimonial-text {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+
+        .author-info h4 {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+        }
+
+        .author-info span {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: var(--cream);
+            position: relative;
+        }
+
+        .cta-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--gradient-primary);
+            border-radius: 30px;
+            padding: 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cta-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta .btn-primary {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .cta .btn-primary:hover {
+            box-shadow: var(--shadow-lg), 0 0 40px rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-contact {
+            margin-top: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .cta-contact a {
+            color: var(--accent-light);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand {
+            color: var(--white);
+        }
+
+        .footer-brand img {
+            height: 100px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .social-links svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--white);
+        }
+
+        .footer-column h4 {
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent-light);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            section {
+                padding: 4rem 5%;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2.25rem;
+            }
+
+            .cta-container {
+                padding: 3rem 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <img src="assets/logo.png" alt="Mazzochi Twin's Lawn Care">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#contact" class="nav-cta">Get Free Quote</a></li>
+        </ul>
+        <div class="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-pattern"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>Professional Lawn Care Excellence</span>
+            </div>
+            <h1>Transform Your Outdoor Space Into a <span class="highlight">Masterpiece</span></h1>
+            <p>We deliver premium lawn care services with meticulous attention to detail, ensuring your property looks immaculate year-round.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">
+                    Get Your Free Estimate
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="#services" class="btn btn-secondary">Explore Services</a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <div class="scroll-indicator"></div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-header reveal">
+            <span class="section-label">Our Services</span>
+            <h2>Comprehensive Lawn Care Solutions</h2>
+            <p>From routine maintenance to complete landscape transformations, we provide everything your property needs to thrive.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                </div>
+                <h3>Lawn Mowing & Maintenance</h3>
+                <p>Regular, precision mowing services that keep your lawn looking pristine with perfectly manicured edges and consistent cutting heights.</p>
+                <a href="#contact" class="service-link">
+                    Learn More
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z"/></svg>
+                </div>
+                <h3>Seasonal Cleanup</h3>
+                <p>Thorough spring and fall cleanup services including leaf removal, debris clearing, and bed preparation to keep your property looking its best.</p>
+                <a href="#contact" class="service-link">
+                    Learn More
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 22c4.97 0 9-4.03 9-9-4.97 0-9 4.03-9 9zM5.6 10.25c0 1.38 1.12 2.5 2.5 2.5.53 0 1.01-.16 1.42-.44l-.02.19c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5l-.02-.19c.4.28.89.44 1.42.44 1.38 0 2.5-1.12 2.5-2.5 0-1-.59-1.85-1.43-2.25.84-.4 1.43-1.25 1.43-2.25 0-1.38-1.12-2.5-2.5-2.5-.53 0-1.01.16-1.42.44l.02-.19C14.5 2.12 13.38 1 12 1S9.5 2.12 9.5 3.5l.02.19c-.4-.28-.89-.44-1.42-.44-1.38 0-2.5 1.12-2.5 2.5 0 1 .59 1.85 1.43 2.25-.84.4-1.43 1.25-1.43 2.25zM12 5.5c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5S9.5 9.38 9.5 8s1.12-2.5 2.5-2.5zM3 13c0 4.97 4.03 9 9 9 0-4.97-4.03-9-9-9z"/></svg>
+                </div>
+                <h3>Trimming & Edging</h3>
+                <p>Precise trimming and edging services that create clean, defined lines around walkways, driveways, and garden beds for a polished look.</p>
+                <a href="#contact" class="service-link">
+                    Learn More
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M19.36 2.72l1.42 1.42-5.72 5.71c1.07 1.54 1.22 3.39.32 4.59L9.06 8.12c1.2-.9 3.05-.75 4.59.32l5.71-5.72zM5.93 17.57c-2.01-2.01-3.24-4.41-3.58-6.65l4.88-2.09 7.44 7.44-2.09 4.88c-2.24-.34-4.64-1.57-6.65-3.58z"/></svg>
+                </div>
+                <h3>Mulching Services</h3>
+                <p>Professional mulch installation that enhances your landscape's appearance while protecting plants and retaining essential moisture.</p>
+                <a href="#contact" class="service-link">
+                    Learn More
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9v7c0 1.1.9 2 2 2h4v-8H5v-1c0-3.87 3.13-7 7-7s7 3.13 7 7v1h-4v8h4c1.1 0 2-.9 2-2v-7c0-4.97-4.03-9-9-9z"/></svg>
+                </div>
+                <h3>Weed Control</h3>
+                <p>Effective weed management strategies that eliminate unwanted growth and prevent future infestations for a cleaner, healthier lawn.</p>
+                <a href="#contact" class="service-link">
+                    Learn More
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+                </div>
+                <h3>Custom Solutions</h3>
+                <p>Tailored lawn care packages designed to meet your property's unique needs, budget, and maintenance preferences.</p>
+                <a href="#contact" class="service-link">
+                    Learn More
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section with Stats -->
+    <section class="about" id="about">
+        <div class="about-pattern"></div>
+        <div class="about-content">
+            <div class="about-text reveal">
+                <span class="section-label">Why Choose Us</span>
+                <h2>Dedicated to Delivering Excellence in Every Cut</h2>
+                <p>Mazzochi Twin's Lawn Care Service is a dedicated lawn care company committed to providing reliable, high-quality outdoor maintenance services. We take pride in delivering well-kept lawns through consistent service, attention to detail, and a strong work ethic.</p>
+                <div class="about-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        </div>
+                        <span>Licensed & Fully Insured</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        </div>
+                        <span>Consistent, Reliable Scheduling</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        </div>
+                        <span>100% Satisfaction Guaranteed</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        </div>
+                        <span>Eco-Friendly Practices</span>
+                    </div>
+                </div>
+            </div>
+            <div class="stats-grid reveal">
+                <div class="stat-card">
+                    <div class="stat-number" data-target="500">0</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="10">0</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="15000">0</div>
+                    <div class="stat-label">Lawns Maintained</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="100">0</div>
+                    <div class="stat-label">5-Star Reviews</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-header reveal">
+            <span class="section-label">Testimonials</span>
+            <h2>What Our Clients Say</h2>
+            <p>Don't just take our word for it. Here's what our satisfied customers have to say about our services.</p>
+        </div>
+        <div class="testimonial-container reveal">
+            <div class="testimonial-card">
+                <div class="quote-icon">
+                    <svg viewBox="0 0 24 24"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/></svg>
+                </div>
+                <p class="testimonial-text">"Mazzochi Twin's has transformed our yard completely. Their attention to detail is unmatched, and they're always reliable and professional. Our lawn has never looked better!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">JM</div>
+                    <div class="author-info">
+                        <h4>Jennifer M.</h4>
+                        <span>Homeowner</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="contact">
+        <div class="cta-container">
+            <div class="cta-pattern"></div>
+            <div class="cta-content">
+                <h2>Ready to Transform Your Lawn?</h2>
+                <p>Get a free, no-obligation estimate today. Let us show you what professional lawn care can do for your property.</p>
+                <a href="tel:+1234567890" class="btn btn-primary">
+                    Call For Free Quote
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                    </svg>
+                </a>
+                <div class="cta-contact">
+                    <p>Or email us at <a href="mailto:info@mazzochilawncare.com">info@mazzochilawncare.com</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="assets/logo.png" alt="Mazzochi Twin's Lawn Care">
+                <p>Providing reliable, high-quality lawn care services. We help homeowners maintain clean, healthy, and beautiful outdoor spaces year-round.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">Lawn Mowing</a></li>
+                    <li><a href="#services">Seasonal Cleanup</a></li>
+                    <li><a href="#services">Trimming & Edging</a></li>
+                    <li><a href="#services">Mulching</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#testimonials">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:+1234567890">(123) 456-7890</a></li>
+                    <li><a href="mailto:info@mazzochilawncare.com">info@mazzochilawncare.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Mazzochi Twin's Lawn Care Service, LLC. All rights reserved.</p>
+            <p>Licensed & Insured</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Reveal animations on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const revealPoint = 150;
+
+                if (elementTop < windowHeight - revealPoint) {
+                    element.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Initial check
+
+        // Animated counter for stats
+        const animateCounter = (element) => {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000; // 2 seconds
+            const start = 0;
+            const startTime = performance.now();
+
+            const updateCounter = (currentTime) => {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Easing function for smooth animation
+                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                const current = Math.floor(easeOutQuart * target);
+                
+                element.textContent = current.toLocaleString() + (target >= 100 ? '+' : '');
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target.toLocaleString() + '+';
+                }
+            };
+
+            requestAnimationFrame(updateCounter);
+        };
+
+        // Intersection Observer for stat counters
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const statObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    statObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statNumbers.forEach(stat => statObserver.observe(stat));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn?.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
