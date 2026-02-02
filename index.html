@@ -58,19 +58,20 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 1rem 5%;
+            padding: 0.5rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            background: transparent;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-sm);
         }
 
         .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(20px);
             box-shadow: var(--shadow-sm);
-            padding: 0.75rem 5%;
+            padding: 0.5rem 5%;
         }
 
         .navbar-logo {
@@ -80,13 +81,13 @@
         }
 
         .navbar-logo img {
-            height: 90px;
+            height: 70px;
             width: auto;
             transition: transform 0.3s ease;
         }
 
         .navbar.scrolled .navbar-logo img {
-            height: 70px;
+            height: 60px;
         }
 
         .navbar-logo img:hover {
@@ -176,13 +177,14 @@
             position: relative;
             overflow: hidden;
             background: var(--white);
+            padding-top: 90px;
         }
 
         .hero-bg {
             position: absolute;
             inset: 0;
-            background: url('https://images.unsplash.com/photo-1558904541-efa843a96f01?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
-            opacity: 0.4;
+            background: url('assets/hero-bg.png') center/cover;
+            opacity: 0.5;
         }
 
         .hero-overlay {
@@ -615,6 +617,79 @@
             font-weight: 500;
         }
 
+        /* Our Work Gallery */
+        .gallery-section {
+            background: var(--white);
+            padding: 6rem 5%;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(26, 58, 26, 0.8) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay span {
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
         /* Testimonials */
         .testimonials {
             background: var(--white);
@@ -748,6 +823,94 @@
             color: var(--accent-light);
             text-decoration: none;
             font-weight: 600;
+        }
+
+        /* Contact Form Section */
+        .contact-form-section {
+            background: var(--white);
+            padding: 6rem 5%;
+        }
+
+        .contact-form-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 4px rgba(74, 140, 74, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: var(--gradient-accent);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md), var(--shadow-glow);
+        }
+
+        .form-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg), 0 0 60px rgba(123, 192, 67, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
         }
 
         /* Footer */
@@ -1103,6 +1266,41 @@
         </div>
     </section>
 
+    <!-- Our Work Gallery -->
+    <section class="gallery-section" id="gallery">
+        <div class="section-header reveal">
+            <span class="section-label">Our Work</span>
+            <h2>See Our Results</h2>
+            <p>Take a look at some of our recent lawn care projects and the quality results we deliver.</p>
+        </div>
+        <div class="gallery-grid reveal">
+            <div class="gallery-item">
+                <img src="assets/work-1.png" alt="Before and after house siding cleaning">
+                <div class="gallery-overlay">
+                    <span>House Siding Cleaning</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="assets/work-2.png" alt="Before and after exterior cleaning">
+                <div class="gallery-overlay">
+                    <span>Exterior Pressure Washing</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="assets/work-3.png" alt="Commercial field mowing">
+                <div class="gallery-overlay">
+                    <span>Commercial Mowing</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="assets/work-4.png" alt="Precision lawn striping">
+                <div class="gallery-overlay">
+                    <span>Precision Lawn Striping</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Testimonials -->
     <section class="testimonials" id="testimonials">
         <div class="section-header reveal">
@@ -1144,6 +1342,42 @@
                     <p>Or email us at <a href="mailto:info@mazzochilawncare.com">info@mazzochilawncare.com</a></p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form-section" id="contact-form">
+        <div class="section-header reveal">
+            <span class="section-label">Get In Touch</span>
+            <h2>Send Us a Message</h2>
+            <p>Fill out the form below and we'll get back to you as soon as possible.</p>
+        </div>
+        <div class="contact-form-container reveal">
+            <form class="contact-form" action="#" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" placeholder="John" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" placeholder="Doe" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell us about your lawn care needs..." required></textarea>
+                </div>
+                <button type="submit" class="form-submit">Send Message</button>
+            </form>
         </div>
     </section>
 
